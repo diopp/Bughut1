@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<link href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css" rel="stylesheet">
+	<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table-locale-all.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.19.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+	<style>
+		.select,
+		#locale {
+		  width: 100%;
+		}
+		.like {
+		  margin-right: 10px;
+		}
+	  </style>
+	  
+
+
+
+	<title>Members</title>
+</head>
+
+<nav class="navbar navbar-expand-lg nav-brand-light bg-light">
+	<div class="container">
+		<a href="#" class="nav-brand btn btn-outline-primary btn-rounded btn-lg bi-bug-fill"> BugHut </a>
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link ms-4" href='/dashboard' style="font-size: 18;">Dashboard</a>
+				</li>
+
+				<li class="nav-item ">
+					<a class="nav-link ms-4" href="/members" style="font-size: 18;">Members</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link ms-4" href="/project" style="font-size: 18;">Bugs</a>
+				</li>
+				<li class="nav-item">
+					<form class="d-flex">
+						<input class="form-control me-2 ms-4" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-primary" type="submit">Search</button>
+					</form>
+				</li>
+
+
+				<li class="nav-item">
+					<button type='button' class=" btn btn-outline-white btn-success ms-5" data-toggle="modal" data-target="#AddMemberForm">
+						Add Member
+						</button>
+				</li>
+
+				<div id="AddMemberForm" class="modal fade">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header text-center bg-success">
+								<h3 class="modal-title text-center text-light"> Add Member</h3>
+							</div>
+							<div class="modal-body">
+								<form role="form" method="post" action="/members">
+
+									<div class="form-group">
+										<label class="control-label">Name</label>
+										<div>
+											<input type="text" class="form-control input-lg" name="name" value="">
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="control-label">Email</label>
+										<div>
+											<input type="email" class="form-control input-lg" name="email" value="">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label">Phone</label>
+										<div>
+											<input type="tel" class="form-control input-lg" name="phone" value="">
+										</div>
+									</div>
+<br>
+									<div class="form-group">
+										<div>
+											<button type="submit" class="btn btn-success btn-default">Add Member</button>
+
+								</form>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+
+	
+
+
+	<li>
+		<a class="btn btn-outline-danger bg-danger text-light ms-5">Logout</a>
+	</li>
+
+
+	</ul>
+
+
+	</div>
+
+
+	</div>
+</nav>
+
+
+<body class="Member">
+
+
+	<div class="container">
+		<div class="card-block border-danger ">
+			<hr class="bg">
+
+			<table id="myTable" class="shadow-lg p-3 mb-5 bg-white rounded table table1 table-bordered">
+				<div class=" shadow-lg p-3 mb-5  rounded card-header text-center text-light bg-success">Members</div>
+
+
+				<thead id="tb" class="  bg-primary">
+					<tr class=" text-light ">
+					
+						<th class="text-center">Name</th>
+						<th class="text-center">Email</th>
+						<th class="text-center">Phone</th>
+						<th class="text-center">Actions</th>
+
+
+					</tr>
+				</thead>
+
+				<tbody class="text-dark text-sm bg-light">
+
+					<% members.forEach(function(b){ %>
+				
+					<tr class="text-center text-dark ">
+				
+						<td><%= b.name %></td>
+						<td><%= b.email %></td>
+						<td>
+
+							<%= b.phone %>
+
+						</td>
+
+
+						<td>
+							<form action='/members/<%= b._id %>?_method=DELETE' method='POST'>
+								<a type='button' class=" btn  btn-success" href="/members/<%= b._id %>/edit">Edit</a>
+
+
+								<button id="button" class="btn bi  btn-danger" type="submit" value='Delete'> Delete
+							</form>
+
+
+						</td>
+
+
+					</tr>
+					<%  }) %>
+
+				
+					<% users.forEach(function(u){ %>
+				
+						<tr class="text-center">
+						
+							<td><%= u.name %></td>
+							<td><%= u.email %></td>
+							<td><%= u.phone %></td>
+	
+							<td>
+								<form action='/members/<%= u._id %>?_method=DELETE' method='POST'>
+									<a type='button' class=" btn  btn-success" href="/members/<%= u._id %>/editUser">Edit</a>
+	
+	
+									<button id="button" class="btn bi  btn-danger" type="submit" value='Delete'> Delete
+								</form>
+	
+	
+							</td>
+	
+	
+						</tr>
+						<%  }) %>
+
+
+
+
+
+
+
+
+				<tbody>
+
+
+			</table>
+
+
+		</div>
+		
+
+	<script>
+
+
+
+
+	</script>	
+
+
+		
+
+</body>
+</html>
