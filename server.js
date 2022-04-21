@@ -307,6 +307,56 @@ app.get('/logout', (req, res) => {
 });
 
 
+/* ----------------------Demo ----------------------- */
+				/*Members*/
+const memberdemo = [
+	{
+		name: 'Papa Diop',
+		email: 'papamamadous@gmail.com',
+		phone: 9143125301,
+	},
+
+	{
+		name: 'Berat Bateman',
+		email: 'beratbateman@gmail.com',
+		phone: 9145672348,
+	},
+
+	{
+		name: 'Alanna Conrad',
+		email: 'alannaconrad@gmail.com',
+		phone: 9141234567
+	},
+
+	{
+		name: 'April Henry',
+		email: 'aprilhenry@gmail.com',
+		phone: 9144569078
+	},
+
+	{
+		name: 'Kiefer Kaye',
+		email: 'kieferkaye@gmail.com',
+		phone: 9144097856
+	}
+]
+
+app.get('/demo/members/', (req,res) => {
+	res.render(__dirname + '/views/Demo/Members/index.ejs', {
+		memberdemo
+	})
+})
+
+
+
+	
+
+
+
+
+
+
+
 
 
 app.listen(PORT, () => {

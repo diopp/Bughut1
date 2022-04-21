@@ -196,3 +196,10 @@ canvas#myChart {
     background-color: #edf2f9;
 
   }
+
+  #demo:hover {
+     animation: pulse;
+     animation-duration: 1s;
+  
+      
+  }
