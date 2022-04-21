@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const Member = require('./models/members');
 const moment = require('moment');
 const methodOverride = require('method-override');
-
+const MemberDemo = require('./models/demoM')
 
 
 const Bugs = require('./models/bugs');
@@ -309,47 +309,58 @@ app.get('/logout', (req, res) => {
 
 /* ----------------------Demo ----------------------- */
 				/*Members*/
-const memberdemo = [
-	{
-		name: 'Papa Diop',
-		email: 'papamamadous@gmail.com',
-		phone: 9143125301,
-	},
 
-	{
-		name: 'Berat Bateman',
-		email: 'beratbateman@gmail.com',
-		phone: 9145672348,
-	},
+app.get('/demo/members/', (req, res) => {
+	MemberDemo.find({}, (err, memberdemo) => {
+		res.render(__dirname + '/views/Demo/Members/index.ejs', {memberdemo})
+		})
+		})
+				
 
-	{
-		name: 'Alanna Conrad',
-		email: 'alannaconrad@gmail.com',
-		phone: 9141234567
-	},
 
-	{
-		name: 'April Henry',
-		email: 'aprilhenry@gmail.com',
-		phone: 9144569078
-	},
+app.post('/demo/members/', (req, res) => {
 
-	{
-		name: 'Kiefer Kaye',
-		email: 'kieferkaye@gmail.com',
-		phone: 9144097856
-	}
-]
+	MemberDemo.create(req.body, (err, memberdemo) => {
+	 
+	
+		res.redirect('/demo/members/')
 
-app.get('/demo/members/', (req,res) => {
-	res.render(__dirname + '/views/Demo/Members/index.ejs', {
-		memberdemo
+	
+	})
+	
+})
+
+
+app.get('/demo/members/:id/edit', (req, res) => {
+	MemberDemo.findById(req.params.id, (err, memberdemo) => {
+		res.render(__dirname + '/views/Demo/Members/edit.ejs', {
+			memberdemo
+		})
 	})
 })
 
 
 
+
+app.put('/demo/members/:id', (req, res) => {
+	req.body.completed = !!req.body.completed;
+	MemberDemo.findByIdAndUpdate(
+		req.params.id,
+		req.body, {
+			new: true
+		},
+		(err, memberdemo) => {
+			console.log(err)
+			res.redirect('/demo/members/')
+		})})
 	
+	
+
+app.delete('/demo/members/:id', (req, res) => {
+	MemberDemo.findByIdAndRemove(req.params.id, (err, deleteMemberDemo) => {
+				res.redirect('/demo/members/')
+			})
+		})
 
 
 

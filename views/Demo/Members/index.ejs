@@ -58,24 +58,24 @@
 
 
 				<li class="nav-item">
-					<button type='button' class=" btn btn-outline-white btn-success ms-5" data-toggle="modal" data-target="#AddMemberForm">
+					<button type='button' class=" btn btn-outline-white btn-success ms-5" data-toggle="modal" data-target="#AddMembersForm">
 						Add Member
 						</button>
 				</li>
 
-				<div id="AddMemberForm" class="modal fade">
+				<div id="AddMembersForm" class="modal fade">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header text-center bg-success">
 								<h3 class="modal-title text-center text-light"> Add Member</h3>
 							</div>
 							<div class="modal-body">
-								<form role="form" method="post" action="/members">
+								<form role="form" method="post" action="/demo/members">
 
 									<div class="form-group">
 										<label class="control-label">Name</label>
 										<div>
-											<input type="text" class="form-control input-lg" name="name" value="">
+											<input type="text" class="form-control input-lg" name="demoname" value="">
 										</div>
 									</div>
 
@@ -83,14 +83,14 @@
 									<div class="form-group">
 										<label class="control-label">Email</label>
 										<div>
-											<input type="email" class="form-control input-lg" name="email" value="">
+											<input type="email" class="form-control input-lg" name="demoemail" value="">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<label class="control-label">Phone</label>
 										<div>
-											<input type="tel" class="form-control input-lg" name="phone" value="">
+											<input type="tel" class="form-control input-lg" name="demophone" value="">
 										</div>
 									</div>
 <br>
@@ -155,18 +155,18 @@
 				
 					<tr class="text-center text-dark ">
 				
-						<td><%= b.name %></td>
-						<td><%= b.email %></td>
+						<td><%= b.demoname %></td>
+						<td><%= b.demoemail %></td>
 						<td>
 
-							<%= b.phone %>
+							<%= b.demophone %>
 
 						</td>
 
 
 						<td>
-							<form action='/members/<%= b._id %>?_method=DELETE' method='POST'>
-								<a type='button' class=" btn  btn-success" href="/members/<%= b._id %>/edit">Edit</a>
+							<form action='/demo/members/<%= b._id %>?_method=DELETE' method='POST'>
+								<a type='button' class=" btn  btn-success" href="/demo/members/<%= b._id %>/edit">Edit</a>
 
 
 								<button id="button" class="btn bi  btn-danger" type="submit" value='Delete'> Delete
