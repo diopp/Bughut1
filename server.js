@@ -429,31 +429,43 @@ app.delete('/demo/project/:id', (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 app.get('/demo/dashboard', (req, res) => {
-	BugsDemo.find({}, (err, bugsdemo) => {
+	BugsDemo.find({}, (err, bugsdemos) => {
+		MemberDemo.find({}, (err, memberdemos) => {
 		res.render(__dirname + '/views/Demo/Dashboard/index.ejs', {
-			bugsdemo
+			bugsdemos,memberdemos
 		})
 	})
-	MemberDemo.find({}, (err, memberdemo) => {
-		res.render(__dirname + '/views/Demo/Dashboard/index.ejs', {
-			memberdemo
-		})
+	
+	
 	})
 
 
 
 })
 
+
+
 app.post('/demo/dashboard', (req, res) => {
-	BugsDemo.create(req.body, (err, bugsdemo) => {
+	BugsDemo.create(req.body, (err, bugsdemos) => {
 		res.redirect('/demo/dashboard')
 	})
 })
 
 app.get('/demo/dashboard/:index', (request, response) => {
-	const foundbugsdemo = bugsdemo.find(function(bugsdemo) {
-		return bugsdemo.id === Number(request.params.index)
+	const foundbugsdemo = bugsdemo.find(function(bugsdemos) {
+		return bugsdemos.id === Number(request.params.index)
 
 	});
 	response.render('show.ejs', {
@@ -462,20 +474,12 @@ app.get('/demo/dashboard/:index', (request, response) => {
 });
 
 app.get('/demo/dashboard/:id', (request, response) => {
-	MemberDemo.findById(request.params.id, (err, memberdemo) => {
+	MemberDemo.findById(request.params.id, (err, memberdemos) => {
 		res.render(__dirname + '/views/Demo/Dashboard/index.ejs', {
-			memberdemo
+			memberdemos
 		})
 	})
 })
-
-
-
-
-
-
-
-		
 
 
 
