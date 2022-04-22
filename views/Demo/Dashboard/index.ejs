@@ -156,15 +156,15 @@
 				<tbody>
 			
 
-					<% members.forEach(function(b){ %>
+					<% memberdemo.forEach(function(b){ %>
 					<tr >
 						
 						<td style="display: none;"  class="text-light">##</td>
-						<td class="text-center" ><%= b.name %></td>
+						<td class="text-center" ><%= b.demoname %></td>
 
 						<td class="text-center">
 
-							<%= b.phone %>
+							<%= b.demophone %>
 
 						</td>
 
@@ -182,8 +182,8 @@
 									</div>
 									<div class="modal-body">
 
-										<% members.forEach(function(c){ %>
-										<% c.name %>
+										<% memberdemo.forEach(function(c){ %>
+										<% c.demoname %>
 
 
 										<%  }) %>
@@ -204,38 +204,7 @@
 
 					<%  }) %>
 
-					<% users.forEach(function(u){ %>
-
-
-						<tr>
-							
-							<td style="display: none;" class="text-light">##</td>
-							<td class="text-center"><%= u.name %></td>
-	
-							<td class="text-center">
-	
-								<%= u.phone %>
-	
-							</td>
-	
-							<td class="text-center"> <button type="" class="btn bi bi-eye-fill btn-primary" data-toggle="modal" data-target="#ViewMembers"></button></td>
-	
-							<div class="modal fade" id="ViewMembers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header  bg-primary">
-											<h5 class="modal-title text-light text-center " id="exampleModalLabel">Info Members</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-	
-											<% users.forEach(function(u){ %>
-											<% u.name %>
-	
-	
-											<%  }) %>
+					
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -298,13 +267,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% bugs.forEach(function(b){ %>
+							<% bugsdemo.forEach(function(b){ %>
 							<tr class="total-bug">
 								<td style="display:none;">CountBugs</td>
-								<td><%= b.name %></td>
-								<td><span class="badge badge-pill badge-primary"></span> <%= b.status %> </td>
-								<td><%= b.assigned %> </td>
-								<td><%= b.severity %> </td>
+								<td><%= b.demoname %></td>
+								<td><span class="badge badge-pill badge-primary"></span> <%= b.demostatus %> </td>
+								<td><%= b.demoassigned %> </td>
+								<td><%= b.demoseverity %> </td>
 								<td>
 
 

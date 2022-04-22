@@ -5,7 +5,8 @@ const morgan = require('morgan');
 const Member = require('./models/members');
 const moment = require('moment');
 const methodOverride = require('method-override');
-const MemberDemo = require('./models/demoM')
+const MemberDemo = require('./models/demoM');
+const BugsDemo = require('./models/demoB')
 
 
 const Bugs = require('./models/bugs');
@@ -364,7 +365,117 @@ app.delete('/demo/members/:id', (req, res) => {
 
 
 
+		app.get('/demo/project/:id', (request, response) => {
+			BugsDemo.findById(request.params.id, (err, bugsdemo) => {
+				console.log(err)
+				res.render(__dirname + '/views/Demo/Projects/index.ejs', {
+					bugsdemo
+				})
+			})
+		})
+		
+		app.get('/demo/project', (req, res) => {
+			BugsDemo.find({}, (err, bugsdemo) => {
+				res.render(__dirname + '/views/Demo/Projects/index.ejs', {
+					bugsdemo
+				})
 
+			
+			
+		})
+		
+		})
+		
+		
+		
+		
+		
+		
+		app.post('/demo/project', (req, res) => {
+		
+			BugsDemo.create(req.body, (err, bugsdemo) => {
+				res.redirect('/demo/project')
+		
+			})
+		})
+		
+		app.get('/demo/project/:id/edit', (req, res) => {
+			BugsDemo.findById(req.params.id, (err, bugsdemo) => {
+				res.render(__dirname + '/views/Demo/Projects/edit.ejs', {
+					bugsdemo
+				})
+			})
+		})
+		
+		app.put('/demo/project/:id', (req, res) => {
+			req.body.completed = !!req.body.completed;
+			BugsDemo.findByIdAndUpdate(
+				req.params.id,
+				req.body, {
+					new: true
+				},
+				(err, bugsdemo) => {
+					console.log(err)
+					res.redirect('/demo/project')
+				})
+		})
+		
+
+app.delete('/demo/project/:id', (req, res) => {
+	BugsDemo.findByIdAndRemove(req.params.id, (err, deleteBugsdemo) => {
+		res.redirect('/demo/project')
+	})
+})
+
+
+
+app.get('/demo/dashboard', (req, res) => {
+	BugsDemo.find({}, (err, bugsdemo) => {
+		res.render(__dirname + '/views/Demo/Dashboard/index.ejs', {
+			bugsdemo
+		})
+	})
+	MemberDemo.find({}, (err, memberdemo) => {
+		res.render(__dirname + '/views/Demo/Dashboard/index.ejs', {
+			memberdemo
+		})
+	})
+
+
+
+})
+
+app.post('/demo/dashboard', (req, res) => {
+	BugsDemo.create(req.body, (err, bugsdemo) => {
+		res.redirect('/demo/dashboard')
+	})
+})
+
+app.get('/demo/dashboard/:index', (request, response) => {
+	const foundbugsdemo = bugsdemo.find(function(bugsdemo) {
+		return bugsdemo.id === Number(request.params.index)
+
+	});
+	response.render('show.ejs', {
+		BugsDemo: bugsdemo[request.params.index]
+	});
+});
+
+app.get('/demo/dashboard/:id', (request, response) => {
+	MemberDemo.findById(request.params.id, (err, memberdemo) => {
+		res.render(__dirname + '/views/Demo/Dashboard/index.ejs', {
+			memberdemo
+		})
+	})
+})
+
+
+
+
+
+
+
+		
 
 
 
