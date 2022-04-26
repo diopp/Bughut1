@@ -23,13 +23,16 @@
     margin: 20px 0px;
 }
 
-.card-box h3 {
+
+
+#TotalBug1 h3 {
     font-size: 27px;
     font-weight: bold;
     margin: 0 0 8px 0;
     white-space: nowrap;
     padding: 0;
     text-align: left;
+
 }
 .card-box p {
     font-size: 15px;
@@ -92,6 +95,57 @@ canvas#myChart {
     width: 10.667px;
 }
 
+#myCharts{
+    width: 10%;
+    height: 10%;
+
+
+
+}
+
+
+canvas#myChartt {
+    display: block;
+    box-sizing: border-box;
+    height: 10.667px;
+    width: 10.667px;
+}
+
+
+
+#myChartt{
+    width: 10%;
+    height: 10%;
+
+
+
+}
+
+
+canvas#myChartt {
+    display: block;
+    box-sizing: border-box;
+    height: 10.667px;
+    width: 10.667px;
+}
+
+#myChartt{
+    width: 10%;
+    height: 10%;
+
+
+
+}
+
+
+canvas#myChartt {
+    display: block;
+    box-sizing: border-box;
+    height: 10.667px;
+    width: 10.667px;
+}
+
+
 
 
 
@@ -133,6 +187,10 @@ canvas#myChart {
  #output {
      color: green;
  }
+
+ #output1 {
+    color: green;
+}
 
  body.dashboard{
      background-color:  rgb(237, 242,249);
@@ -203,3 +261,46 @@ canvas#myChart {
   
       
   }
+
+
+  .card-box {
+    position: relative;
+    color: #007bff;
+    padding: 20px 10px 40px;
+    margin: 20px 0px;
+}
+
+
+
+#TotalBug1 h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    padding: 0;
+    text-align: left;
+
+}
+.card-box1 p {
+    font-size: 15px;
+}
+.card-box1 .icons {
+    position: absolute;
+    top: auto;
+    bottom: 5px;
+    right: 5px;
+    z-index: 0;
+    font-size: 72px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.card-box1 .card-box-footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 3px 0;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-decoration: none;
+}
